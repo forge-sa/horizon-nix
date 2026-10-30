@@ -76,11 +76,14 @@ Once it is installed, start **Horizon** from your app menu or run `horizon-launc
 - **Updates come from Nix.** The launcher's self-update is turned off (`HORIZON_LAUNCHER_NO_SELF_UPDATE=1`) because it can't replace itself in the read-only Nix store. To get a newer launcher, run `nix flake update horizon` and rebuild. Game versions are a separate matter: the launcher installs and updates them in your home folder, as it does on any other distribution.
 - **Desktop integration.** The package installs a `horizon-launcher.desktop` entry and the Horizon icon. Menu entries that the launcher creates for instances call `horizon-launcher` from your `PATH`, so they keep working after updates and garbage collection.
 
+## NixOS only fhs-free version exists
+
+Since not all of the NixOS users like fhs there is [fhs-free version](https://github.com/forge-sa/horizon-nixos) that works ONLY on NixOS
+
 ## Notes
 
 - **Graphics:** Horizon draws through Vulkan or OpenGL (EGL). On NixOS, `hardware.graphics.enable = true;` is enough (desktop setups enable it by default). On other distributions, you may need [nixGL](https://github.com/nix-community/nixGL) or the distribution's own launcher build.
 - **Sound** goes through ALSA. NixOS's PipeWire and PulseAudio modules route ALSA automatically.
-- **Old game versions** that prepare with Python need `python3` installed on the host. Your `PATH` is still visible inside the sandbox.
 - Only `x86_64-linux` is supported, because upstream ships no other Linux builds.
 
 ## Development
